@@ -1,0 +1,28 @@
+<view class="container customer-index">
+  
+  <view class="section userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.userheaderimgurl}}" background-size="cover"></image>
+    <!--<text class="userinfo-level">{{userInfo.groupname}}</text>-->
+    <text class="userinfo-nickname">{{userInfo.usernikename}}</text>
+  </view>
+
+  <view class="section orderinfo">
+    
+    <view class="section__info">
+      <!--<image src="../../../image/icon/order@2X.png" style=""></image>
+      <text class="title">我的订单</text>
+      <image class="widgets__info-img" src="../../../image/icon/arrowright.png" mode="aspectFill" />
+      -->
+      <navigator url="../order/index?filter=all&pagesize=10&page=1" class="widget">
+        <text class="widget__name">我的订单</text>
+        <image class="widget__arrow" src="../../../image/icon/arrowright.png" mode="aspectFill" />
+      </navigator>
+    </view>
+    <view class="flex-wrp" style="height: 300px;">
+      <view class="flex-item bc_green">待付款</view>
+      <view class="flex-item bc_red">待收货</view>
+      <view class="flex-item bc_blue">待评价</view>
+    </view>
+  </view>
+
+</view>

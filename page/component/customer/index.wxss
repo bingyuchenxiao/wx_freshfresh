@@ -1,0 +1,50 @@
+/**customer.wxss**/
+.container{
+  background-color: #eee;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+  background-color: #fff;
+}
+.userinfo-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+.userinfo-level,
+.userinfo-nickname {
+  color: #000;
+  font-size: 14px;
+}
+
+/** 我的订单订单 **/
+.orderinfo{
+  margin-top: 8px; 
+  background-color: #fff;
+}
+.orderinfo .section__title{
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #eee;
+}
+.orderinfo .flex-wrp{
+  display: flex;
+  flex-direction: row;
+}
+navigator {
+  position:relative;
+  border-bottom:1px solid #eee;
+  padding:8px 10px;
+
+}
+
+.widget__arrow {
+  width:32rpx;
+  height:32rpx;
+  float:right;
+
+}

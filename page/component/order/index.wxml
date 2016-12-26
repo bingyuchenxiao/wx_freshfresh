@@ -1,0 +1,38 @@
+<!--page/component/order/index.wxml-->
+<view class="body">
+    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+    <toast hidden="{{toastHidden.hidden}}" duration="3000" bindchange="toast2Change">
+      {{toastHidden.errorMsg}}
+    </toast>
+    <view class="orderList">
+
+        <block wx:for-items="{{order.orderlist}}">
+            <view class="order_item bc_fa">                
+                <view class="title">
+                    <text>订单编号 {{item.orderno}}</text>
+                    <text style="float: right;margin-right: 15px;">{{item.orderstatus}}</text>
+                </view>
+                <view class="product">
+                    <scroll-view class="scroll-view_H scroll-view_{{item.orderno}}" scroll-x="true" style="width: 100%;height: 80px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-left="{{scrollLeft}}">
+                    
+                    <view class="scroll-view-item_{{item.orderno}}" wx:for="{{item.orderproductimages}}" wx:for-index="idx" wx:for-item="itemName" style="">
+                      <!--{{idx}}: {{itemName}}-->
+                      <image src="{{itemName}}" data-src="{{itemName}}" mode="aspectFi" style="width: 70px; height: 70px;"></image>
+                    </view>
+
+                    <!--<block wx:for-items="{{item.orderproductimages}}">
+                        <view class="scroll-view-item_{{item.orderno}}">
+                            <image src="{{item}}" data-src="{{item}}" mode="aspectFi" style="width: 80px; height: 80px;"></image>
+                        </view>
+                    </block>-->
+                    
+                    </scroll-view>
+                </view>
+                
+
+            </view>
+        </block>
+    </view>
+</view>

@@ -3,7 +3,7 @@
     <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
       加载中...
     </loading>
-    <toast hidden="{{toastHidden.hidden}}" duration="3000" bindchange="toast2Change">
+    <toast hidden="{{toastHidden.hidden}}" duration="1000" bindchange="toastChange">
       {{toastHidden.errorMsg}}
     </toast>
     <view class="orderList">

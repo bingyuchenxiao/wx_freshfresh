@@ -1,6 +1,7 @@
 
 App({
 	globalData: {
+		host: 'https://test1.freshfresh.com/mobile/v4/index/uri/',
     	hasLogin: false,
     	userInfo: null
   	},
@@ -18,18 +19,19 @@ App({
 			typeof cb == "function" && cb(this.globalData.userInfo)
 		}else{
 			wx.login({
-				success: function(res) {
-					console.log(2222222)
+				success: (res) => {
 					console.log(res)
 					if (res.code) {
 						//发起网络请求
 						wx.request({
-							url: 'http://test1.freshfresh.com/mobile/v4/index/uri/customer.account.userLoginWithWeixcx',
+							url: `${that.globalData.host}customer.account.userLoginWithWeixcx`,
 							data: {
 								js_code: res.code
 							},
-							success: function(result){
+							//success: function(result){
+							success: (result) => {
 								console.log(333333)
+								console.log(this)
 								console.log(result)
 								if(result.data.result == 1){
 									console.log(2222)

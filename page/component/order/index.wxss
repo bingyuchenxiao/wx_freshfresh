@@ -2,8 +2,6 @@
 .order_item{
 	margin-bottom:8px;
 }
-
-
 .product{
     height:90px;
     overflow:hidden;
@@ -11,12 +9,12 @@
 scroll-view {
 	display:block;
 	width:100%;
-  white-space: nowrap;
-  height: 200px;
+  	white-space: nowrap;
+ 	height: 200px;
 }
 
 scroll-view view{
-  display: inline-block;
-  width:85px;
-  overflow:hidden;
+  	display: inline-block;
+  	width:85px;
+  	overflow:hidden;
 }

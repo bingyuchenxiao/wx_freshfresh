@@ -1,3 +1,91 @@
 <view class="index">
-  HOME
+	<!-- nav -->
+	<view class="ff_nav">
+		<ul class="line_nav">
+		<scroll-view class="scroll-view_H scroll-view_nav" scroll-x="true" style="width: 100%;height: 30px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-left="{{scrollLeft}}">
+            
+            <view class="scroll-view-item_nav">
+            	<li class="current"><a href="index.html">推荐</a></li>
+            </view>
+            <view class="scroll-view-item_nav" wx:for-items="{{homepage.categoryTreeInfo}}" style="">                    
+              <li data-categoryID="{{item.categoryID}}"><a href="/list.html?categoryID={{item.categoryID}}">{{item.name}}</a></li>
+            </view>
+		</scroll-view>
+		</ul>
+		
+	</view>
+
+	<!--banner-->
+	<view class="banner">
+		<swiper indicator-dots="false" autoplay="true" interval="3000" duration="1000">
+		  <block wx:for-items="{{homepage.bannerInfo}}">
+		    <swiper-item>
+		    	<a wx:if="{{item.url}}" data-href="{{item.url}}">
+					<image src="{{item.imageUrl}}" class="slide-image" width="355" height="150"/>
+		    	</a>
+		        <image wx:else src="{{item.imageUrl}}" class="slide-image" width="355" height="150"/> 
+		    </swiper-item>
+		  </block>
+		</swiper>
+	</view>
+
+
+	<view class="nav_b">			
+		<scroll-view class="scroll-view_b" scroll-x="true" style="width: 100%;height:100px;">	                            
+            <view class="scroll-view-item_b" wx:for-items="{{homepage.hotTopicsInfo}}" style="">                    
+              <image src="{{item.imageUrl}}" class="slide-image" width="27%" height=""/>
+            </view>
+		</scroll-view>	
+	</view>
+
+	<!-- 快报 -->
+	<view class="report">
+		<!--<text>两鲜快报</text>-->
+		<image src="../../image/report.jpg"/>
+      	<swiper vertical="false" autoplay="true" interval="2000" duration="1000">
+		  <block wx:for-items="{{homepage.freshNews}}">
+		    <swiper-item>
+				<text>{{item.name}}</text>
+		    </swiper-item>
+		  </block>
+		</swiper>
+	</view>
+
+
+	<!-- vipGoodsInfo -->
+	<view class="recommend">
+		<view><text class="commend">{{homepage.vipGoodsInfo.vip.name}}</text></view>
+		<view class="commend_list">
+		
+			<block wx:for-items="{{homepage.vipGoodsInfo.productsList}}">
+				
+				<li wx:if="{{item.simpleProductInfo.productHomeImage}}">
+					<view class="image" href="/product.html?ProductsID={{item.productID}}">
+						<view>
+							<image class="lazy" src="{{item.simpleProductInfo.productHomeImage}}?imageView2/2/w/200/q/100" />
+							<i wx:if="{{item.simpleProductInfo.productMarkUrl}}" class="icon">
+								<img class="lazy" data-original="{{item.simpleProductInfo.productMarkUrl}}?imageView2/2/w/100/q/100"/>
+							</i>
+						</view>
+					</view>
+					<view class="des">
+						
+						<view class="des_title">{{item.productName}}</view>
+						<view class="des_info">{{item.descriptions}}</view>
+						<view><text class="des_now_m">￥{{item.simpleProductInfo.salePrice}}</text></view>
+						<view wx:if="{{item.tempActiveUrl}}" class="add_cart action_open_url" data-url="{{item.simpleProductInfo.tempActiveUrl }}" data-title='{{item.btnTitle}}'>{{item.simpleProductInfo.btnTitle}}</view>
+						
+						<view wx:elif="{{item.isOutStock == 1}}" class="add_cart" style="background:#dedede;color:#4b943d;">已售罄 补货中</view>
+						
+						<view wx:else class="add_cart" data-pID="{{item.productID}}" data-img="{{item.simpleProductInfo.productHomeImage}}" data-stand="{{item.simpleProductInfo.productStandard}}" data-price="{{item.simpleProductInfo.salePrice}}" data-name="{{item.productName}}">加入购物车</view>
+						
+					</view>
+				</li>
+			
+			</block>
+
+			
+		</view>
+	</view>
+
 </view>

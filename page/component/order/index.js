@@ -2,8 +2,12 @@
 var app = getApp()
 Page({
   data:{
+    userInfo: "",
     filter: {page: 1,pagesize: 10,filter: 'all'},
-    order: {},
+    order: {
+      orderlist : [],
+      ordertotal : 0
+    },
     loadingHidden : false,
     toastHidden: {
       hidden: true,
@@ -19,12 +23,13 @@ Page({
   },
   onLoad:function(options){
     // 页面初始化 options为页面跳转所带来的参数
-    console.info(app.globalData)
+    console.info(options)
+    var filter = options.filter ? options.filter : this.data.filter.filter
+    wx.setStorageSync('filter',filter)
     var that = this
     if(!app.globalData.hasLogin){
       app.getUserInfo(function(userInfo){
         //更新数据
-        console.info(3333)
         /*that.setData({
           userInfo:userInfo
         })*/
@@ -47,38 +52,41 @@ Page({
     // 页面关闭
   },
 
-  //图片滚动
-  upper: function(e) {
-    console.log(e)
-  },
-  lower: function(e) {
-    console.log(e)
-  },
-  scroll: function(e) {
-    console.log(e)
-  },
   getUserOrderList: function(){
-    console.info(666666666666)
-    console.info(this)
     var that = this
+    var filter = wx.getStorageSync('filter')
     wx.request({
         url: `${app.globalData.host}customer.account.getuserorderlist`,
         data: {
           token: app.globalData.userInfo.userToken,
-          filter: that.data.filter.filter,
+          filter: filter,
           page: that.data.filter.page,
           pagesize: that.data.filter.pagesize
         },
         success: function(result){
-          console.log(result)
           if(result.data.result == 1){
+            var list = that.data.order.orderlist
+            if(result.data.data.orderlist.length){
+              for(let order of result.data.data.orderlist){
+                list.push(order)
+              }
+            }
+            
             that.setData({
-              order: result.data.data,
+              order: {orderlist: list,ordertotal: result.data.data.ordertotal},
               loadingHidden: true,
-              filter: {page: that.data.filter.page+1, pagesize: that.data.filter.pagesize,filter: that.data.filter.filter }
+              filter: {page: that.data.filter.page+1, pagesize: that.data.filter.pagesize,filter: filter }
             })
-            //typeof cb == "function" && cb(that.globalData.userInfo)
+            
           }else{
+            if(result.data.errorMsg == 'customer donnot exist.'){
+                app.getCustomerInfo(function(userInfo){
+                  that.setData({
+                    userInfo:userInfo
+                  })
+                  this.getUserOrderList()
+                })
+            }
             that.setData({
               toastHidden: {
                 hidden: false,
@@ -96,23 +104,6 @@ Page({
   },
   onReachBottom: function(){
     console.info('bottom------------')
-    //var oprions = {'filter':'all','pagesize':this.data.pagesize,"page":this.data.page}
     this.getUserOrderList()
-  },
-  tap: function(e) {
-    for (var i = 0; i < order.length; ++i) {
-      if (order[i] === this.data.toView) {
-        this.setData({
-          toView: order[i + 1],
-          scrollTop: (i + 1) * 200
-        })
-        break
-      }
-    }
-  },
-  tapMove: function(e) {
-    this.setData({
-      scrollTop: this.data.scrollTop + 10
-    })
   }
 })

@@ -1,59 +1,123 @@
 
+import Promise from 'page/utils/es6-promise.min.js';	
+
 App({
 	globalData: {
-		host: 'https://test1.freshfresh.com/mobile/v4/index/uri/',
+		host: 'https://test1.freshfresh.com/mobile/v3/index/uri/',
+		gateway: 'http://test2.freshfresh.com/gateway',
     	hasLogin: false,
     	userInfo: null
   	},
 	onLaunch: function () {
     	console.log('App Launch And Login')
-		/*this.setData({
-			hasLogin: this.data.hasLogin
-		})*/
-		//console.log(this.globalData)
-		//this.login()
   	},
-	getUserInfo: function(cb){
+
+	getCustomerInfo: function(cb){
 		var that = this
-		if(this.globalData.userInfo){
-			typeof cb == "function" && cb(this.globalData.userInfo)
-		}else{
+		
+		if(!this.globalData.hasLogin || !this.globalData.userInfo){	
+			var openid = wx.getStorageSync('openid')
+			if(openid){
+				console.info('getStorageSync-openID:'+openid)
+				this.userLoginWithOpenId({data:{openid:openid}})
+				.then(function(result) {
+					that.setUserInfo(result,cb)
+				})
+				.catch(this.requestError);
+			}else{
+				this.wxLogin()
+				.then(this.getOpenId)
+				.then(this.userLoginWithOpenId)
+				.then(function(result) {
+					that.setUserInfo(result,cb)
+				})
+				.catch(this.requestError);
+			}
+		}	
+	},
+	wxLogin: function(){
+		console.log('wxLogin')
+		return new Promise((resolve, reject) => {
 			wx.login({
-				success: (res) => {
-					console.log(res)
-					if (res.code) {
-						//发起网络请求
-						wx.request({
-							url: `${that.globalData.host}customer.account.userLoginWithWeixcx`,
-							data: {
-								js_code: res.code
-							},
-							//success: function(result){
-							success: (result) => {
-								console.log(333333)
-								console.log(this)
-								console.log(result)
-								if(result.data.result == 1){
-									console.log(2222)
-									that.globalData.hasLogin = true
-									that.globalData.userInfo = result.data.data
-									console.log(that.globalData)
-									typeof cb == "function" && cb(that.globalData.userInfo)
-								}else{
-									console.log('用户登录失败！' + res.errMsg)
-								}	
-							},
-							fail: function(result){
-								console.log(44444)
-								console.log(result.errMsg)
-							}
-						})
-					} else {
-						console.log('获取用户登录态失败！' + res.errMsg)
-					}
+				success: function(res){
+					resolve(res)
+				},
+				fail: function(err) {
+					reject(err)
 				}
 			})
-		}
+		})
 		
-	}
+	},
+	//用js_code获取openId
+	getOpenId: function(res){
+		console.log('getOpenId')
+		console.info(res)
+		return new Promise((resolve, reject) => {
+			wx.request({
+					url: `https://api.weixin.qq.com/sns/jscode2session`,
+					data: {appid: 'wxabd548cfedd115f0',secret: '10cdb240ebdd97fe5a5c05664ff15597','js_code':res.code,grant_type:'authorization_code'},
+					success: function (res) {
+						wx.setStorage({
+						  key: "openid",
+						  data: res.data.openid
+						})
+						resolve(res)
+					},
+					fail: function (err) {
+						reject(err)
+					}
+				})
+		})
+	},
+	//用openid登录
+	userLoginWithOpenId: function(res){
+		console.log('userLoginWithOpenId')
+		console.info(res.data.openid)
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: `${this.globalData.host}customer.account.userLoginWithWechat`,
+				data: {openid: res.data.openid},
+				success: function (res) {		
+					console.info(res.data)
+					resolve(res)
+				},
+				fail: function (err) {					
+					reject(err)
+				}
+			})
+		})
+	},
+	setUserInfo: function(result,cb){
+		if(result.data.result == 1){
+			this.globalData.hasLogin = true
+			this.globalData.userInfo = result.data.data
+			wx.setStorage({
+			  key: "customerId",
+			  data: result.data.data.customerid
+			})
+			console.info('setUserInfo')
+			console.info(this.globalData)
+			typeof cb == "function" && cb(this.globalData.userInfo)
+		}else{
+			console.log('用户登录失败！' + result.errMsg)
+		}
+	},
+	requestError: function(err){
+		console.log(err)
+		console.log('requestERROR')
+	},
+	/*
+	onLoad: function(){
+		this.requestA()
+		.then(
+			//用js_code获取openId
+			this.requestB
+			//return util.request(`${app.globalData.host}customer.account.userLoginWithWeixcx`,{js_code: resA.code});
+		)
+		.then(this.requestC)
+		.catch(this.requestError);
+		
+	}*/
+
 })

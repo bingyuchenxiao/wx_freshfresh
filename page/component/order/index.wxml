@@ -6,7 +6,8 @@
     <toast hidden="{{toastHidden.hidden}}" duration="1000" bindchange="toastChange">
       {{toastHidden.errorMsg}}
     </toast>
-    <view class="orderList">
+    
+    <view wx:if="{{order.ordertotal}}" class="orderList">
 
         <block wx:for-items="{{order.orderlist}}">
             <view class="order_item bc_fa">                
@@ -34,5 +35,8 @@
 
             </view>
         </block>
+    </view>
+    <view wx:else class="empty">
+        <image src="../../../image/empty.png" />
     </view>
 </view>

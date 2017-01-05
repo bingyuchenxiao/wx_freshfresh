@@ -1,3 +1,15 @@
 .bc_fa{
     background-color: #F8F6F7;
 }
+view,text,p{
+	font-family: Tahoma,'Heiti SC', 'Microsoft YaHei', Geneva, sans-serif;
+}
+scroll-view {
+	width:100%;
+	white-space:nowrap;
+}
+scroll-view view{
+  	display: inline-block;
+  	width:85px;
+  	overflow:hidden;
+}

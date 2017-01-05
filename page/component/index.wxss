@@ -18,11 +18,12 @@ scroll-view view{
     overflow:hidden;
 	width:98%;  
 }
-.line_nav li{
+.line_nav .category{
 	-webkit-flex:initial;
     flex:initial;
     padding:0 10px;
     text-align:center;
+	font-size:14px; color:#666;	
 }
 .line_nav a{
 	font-size:14px; color:#666;	
@@ -30,64 +31,7 @@ scroll-view view{
 .line_nav .current{
 	color:#4b943c;
 	border-bottom:2px solid #4b943c;
-}
-.open_bg{
-	background:#000;opacity:0.5;position:fixed;left:0;top:0;width:100%;height:100%;display:none;z-index:1; 
-}
-.open_h{font-size:0.24rem;color:#333;display:none;width:100%; background:#f8f6f7;
-	height:0.8rem;line-height:0.8rem;padding-left:0.3rem;position:absolute;left:0;top:0;z-index:10; 
-}
-.img_box{
-	position:absolute;right:0;top:0.1rem;display:block;
-	width:0.9rem;height:0.52rem;padding-top:0.08rem;text-align:center;
-	background:#fff;border-left:0.02rem solid #e5e5e5;z-index:10; 
-}
-.img_box img{width:0.26rem;height:0.16rem;
-	-webkit-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-}
-.img_box_on{border-left:none;background:#f8f6f7;}
-.img_box_on img{
-    -webkit-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	transform: rotate(180deg);
-}
-/*open_all_nav*/
-.open_munu{
-	background:#fff;
-	border-collapse:collapse;
-	width:100%;display:none;
-	position:absolute;left:0;top:0.8rem;z-index:10;
-}
-.open_munu td{
-	vertical-align:middle;text-align:center;
-	width:25%;
-	height:1.6rem;
-	border:2px solid #e5e5e5;
-}
-.open_munu td a{
-	display:inline-block;min-width:0.58rem;
-	font-size:0.2rem;color:#666;
-}
-.open_munu img{	
-	width:0.58rem;height:0.58rem;
-}
-.open_munu .cur img{
-	background:#ffee3c;
-}
-/*banner*/
-swiper{height:200px}
-swiper image{width:100%;display:block;}
-
-.banner {
-	width: 100%;
-	position: relative;
-}
-.banner .swipe {
-	overflow: hidden;
-	position: relative;
+	margin-bottom:-2px;
 }
 
 /*topic*/
@@ -106,7 +50,6 @@ swiper image{width:100%;display:block;}
 .commend{
 	width:100%;
 	display:inline-block;
-
 	background:#f8f6f7;
 	margin-top:10px;
 	border-bottom:0.02rem solid #dedcdd;
@@ -120,7 +63,6 @@ swiper image{width:100%;display:block;}
 }
 .commend_list{
 	background:#f8f6f7;
-
 }
 .commend_list li{
 	width:100%;
@@ -148,7 +90,6 @@ swiper image{width:100%;display:block;}
 	line-height:150%;
 	width:60%;
 	margin-right:5%;
-
 }
 .des view{
 	line-height:25px;

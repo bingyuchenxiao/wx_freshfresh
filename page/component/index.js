@@ -27,6 +27,16 @@ Page({
 	
 	onLoad: function(){
 		this.getHomeInfo()
+	},
+	tapCategory: function(e){
+		var categoryID = e.currentTarget.dataset.categoryid
+		console.log(`category/index?categoryID=${categoryID}`)
+		wx.switchTab({
+		  url: `category/index?categoryID=${categoryID}`,
+		  fail: function(error){
+			console.log(error)
+		  }
+		})
 		
 	}
 })

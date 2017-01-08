@@ -33,7 +33,8 @@ scroll-view view{
 	border-bottom:2px solid #4b943c;
 	margin-bottom:-2px;
 }
-
+/*banner*/
+.banner image{width: 100%;height:100%;}
 /*topic*/
 .scroll-view_b{margin-top:10px;}
 .scroll-view-item_b{width:24%;height:100%;margin:0px 5px;}

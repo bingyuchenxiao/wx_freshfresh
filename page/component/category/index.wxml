@@ -1,2 +1,6 @@
-<!--page/component/category/index.wxml-->
-<text>page/component/category/index.wxml</text>
+<import src="../template/nav.wxml"/>
+
+<view class="index">
+	<!-- nav -->
+	<template is="nav" data="{{...homepage}}"/>
+</view>

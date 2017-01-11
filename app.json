@@ -4,7 +4,8 @@
 
 		"page/component/category/index",
 		"page/component/customer/index",
-		"page/component/order/index"
+		"page/component/order/index",
+		"page/component/productlist/index"
 	],
 
 	"window": {

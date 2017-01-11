@@ -8,12 +8,12 @@
             <view class="scroll-view-item_nav">
             	<view class="current category">推荐</view>
             </view>
-            <view class="scroll-view-item_nav" wx:for-items="{{categoryTreeInfo}}" style="">               
+            <view class="scroll-view-item_nav" wx:for-items="{{categoryTreeInfo}}" style="">              
           
 
-<navigator url="category/index?categoryID={{item.categoryID}}" redirect="true" open-type="redirect" hover-class="navigator-hover">
+<navigator url="productlist/index?categoryID={{item.categoryID}}" redirect="true" open-type="redirect" hover-class="navigator-hover">
 
-  <view class="category">{{item.name}} </view>           
+  <view class="category">{{item.name}} </view>       
   </navigator>
             </view>
 

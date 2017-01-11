@@ -18,6 +18,7 @@ Page({
 				this.setData({
 					homepage: res.data.data.homepage
 				})
+				wx.setStorageSync('navData', res.data.data.homepage)
 			},
 			fail: function (error) {
 				//errorCallback(data);

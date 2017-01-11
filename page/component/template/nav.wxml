@@ -11,7 +11,7 @@
             <view class="scroll-view-item_nav" wx:for-items="{{categoryTreeInfo}}" style="">              
           
 
-<navigator url="productlist/index?categoryID={{item.categoryID}}" redirect="true" open-type="redirect" hover-class="navigator-hover">
+<navigator url="productlist/index?&key2=value2&categoryID={{item.categoryID}}"  hover-class="navigator-hover">
 
   <view class="category">{{item.name}} </view>       
   </navigator>

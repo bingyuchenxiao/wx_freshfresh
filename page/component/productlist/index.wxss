@@ -1,1 +1,6 @@
 /* page/component/category/index.wxss */
+@import "../template/nav.wxss";
+
+#pp{color: red;}
+p:after{content:"ddd";}
+div:data-lang(en){color: green;}

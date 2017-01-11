@@ -1,4 +1,4 @@
-
+//入口文件
 import Promise from 'page/utils/es6-promise.min.js';	
 
 App({

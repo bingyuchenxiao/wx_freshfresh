@@ -1,6 +1,9 @@
 <view class="container customer-index">
   
   <view class="section userinfo">
+
+    <view animation="{{animationData}}" style="background:red;height:30rpx;width:30rpx"></view>
+
     <image class="userinfo-avatar" src="{{userInfo.userheaderimgurl}}" background-size="cover"></image>
     <!--<text class="userinfo-level">{{userInfo.groupname}}</text>-->
     <text class="userinfo-nickname">{{userInfo.usernikename}}</text>

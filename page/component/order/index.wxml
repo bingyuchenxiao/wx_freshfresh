@@ -7,8 +7,8 @@
       {{toastHidden.errorMsg}}
     </toast>
     
-    <view wx:if="{{order.ordertotal}}" class="orderList">
-
+   
+    <scroll-view wx:if="{{order.ordertotal}}" class="orderList" scroll-y="true" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" style="height: 100%">
         <block wx:for-items="{{order.orderlist}}">
             <view class="order_item bc_fa">                
                 <view class="title">
@@ -35,7 +35,7 @@
 
             </view>
         </block>
-    </view>
+    </scroll-view>
     <view wx:else class="empty">
         <image src="../../../image/empty.png" />
     </view>

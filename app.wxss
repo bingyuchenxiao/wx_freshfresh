@@ -8,7 +8,8 @@ scroll-view {
 	width:100%;
 	white-space:nowrap;
 }
-scroll-view view{
+.line_nav scroll-view view,
+.nav_b scroll-view view{
   	display: inline-block;
   	width:85px;
   	overflow:hidden;

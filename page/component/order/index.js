@@ -105,5 +105,15 @@ Page({
   onReachBottom: function(){
     console.info('bottom------------')
     this.getUserOrderList()
+  },
+  bindscrolltoupper: function(){
+    console.log('upper------');
+  },
+  bindscrolltolower: function(){
+    console.log('lower------');
+  },
+  onPullDownRefresh: function(){
+    //wx.stopPullDownRefresh()
+    console.log('onPullDownRefresh');
   }
 })

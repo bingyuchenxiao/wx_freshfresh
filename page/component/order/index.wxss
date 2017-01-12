@@ -2,19 +2,21 @@
 page,.body{height:100%;}
 .order_item{
 	margin-bottom:8px;
+	display:block;
+	width:100%;
 }
 .product{
     height:90px;
     overflow:hidden;
 }
-scroll-view {
+.scroll-view_H {
 	display:block;
 	width:100%;
   	white-space: nowrap;
  	height: 200px;
 }
 
-scroll-view view{
+.scroll-view_H view{
   	display: inline-block;
   	width:85px;
   	overflow:hidden;
@@ -31,4 +33,13 @@ scroll-view view{
 .empty image{
 	height:100%;
 	width:100%;
+}
+.order_item .title {
+	font-size:0.8rem;
+	height:2rem;
+	line-height:2rem;
+}
+
+.orderList{
+	
 }

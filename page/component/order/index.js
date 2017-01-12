@@ -63,6 +63,9 @@ Page({
           page: that.data.filter.page,
           pagesize: that.data.filter.pagesize
         },
+        beforeSend: function(){
+          console.log('bbbbbb')
+        },
         success: function(result){
           if(result.data.result == 1){
             var list = that.data.order.orderlist
@@ -114,6 +117,11 @@ Page({
   },
   onPullDownRefresh: function(){
     //wx.stopPullDownRefresh()
-    console.log('onPullDownRefresh');
+    
+    this.setData({
+      loadingHidden: true,
+      filter: {page: 1, pagesize: this.data.filter.pagesize}
+    })
+    this.getUserOrderList()
   }
 })

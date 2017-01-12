@@ -8,6 +8,7 @@ page,.body{height:100%;}
 .product{
     height:90px;
     overflow:hidden;
+    padding-top:1rem;
 }
 .scroll-view_H {
 	display:block;
@@ -38,8 +39,10 @@ page,.body{height:100%;}
 	font-size:0.8rem;
 	height:2rem;
 	line-height:2rem;
+	border-bottom:1px solid #dedcdd;
+	padding:0 0.4rem;
 }
 
 .orderList{
-	
+	background-color:#edebec;
 }

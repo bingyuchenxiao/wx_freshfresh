@@ -8,12 +8,12 @@
     </toast>
     
    
-    <scroll-view wx:if="{{order.ordertotal}}" class="orderList" scroll-y="true" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" style="height: 100%">
+    <view wx:if="{{order.ordertotal}}" class="orderList" scroll-y="true" bindscrolltoupper="bindscrolltoupper" bindscrolltolower="bindscrolltolower" style="height: 100%">
         <block wx:for-items="{{order.orderlist}}">
             <view class="order_item bc_fa">                
                 <view class="title">
                     <text>订单编号 {{item.orderno}}</text>
-                    <text style="float: right;margin-right: 15px;">{{item.orderstatus}}</text>
+                    <text style="float: right;">{{item.orderstatus}}</text>
                 </view>
                 <view class="product">
                     <scroll-view class="scroll-view_H scroll-view_{{item.orderno}}" scroll-x="true" style="width: 100%;height: 80px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-left="{{scrollLeft}}">
@@ -35,7 +35,7 @@
 
             </view>
         </block>
-    </scroll-view>
+    </view>
     <view wx:else class="empty">
         <image src="../../../image/empty.png" />
     </view>

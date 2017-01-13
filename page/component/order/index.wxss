@@ -46,3 +46,17 @@ page,.body{height:100%;}
 .orderList{
 	background-color:#edebec;
 }
+
+.bot{
+	border-top:1px solid #dedcdd;
+	height:2rem;
+	font-size:0.7rem;
+	padding-top: 0.5rem;
+}
+.bot text{
+	padding: 0.2rem;
+	border: 1px solid #aaa;
+	border-radius: 0.1rem;
+	margin-right: 0.4rem;
+    text-align: center;
+}

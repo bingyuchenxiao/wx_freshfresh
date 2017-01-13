@@ -99,14 +99,23 @@ Page({
             console.log('用户获取订单列表失败！' + result.errMsg)
           }	
         },
-        fail: function(fresult){
+        fail: function(result){
           console.info(111111)
-          console.log(fresult)
+          console.log(result)
+          that.setData({
+              toastHidden: {
+                hidden: false,
+                errorMsg: result.errMsg
+              }
+            })
         }
     })
   },
   onReachBottom: function(){
     console.info('bottom------------')
+    this.setData({
+      loadingHidden: false
+    })
     this.getUserOrderList()
   },
   bindscrolltoupper: function(){
@@ -117,11 +126,47 @@ Page({
   },
   onPullDownRefresh: function(){
     //wx.stopPullDownRefresh()
-    
     this.setData({
-      loadingHidden: true,
-      filter: {page: 1, pagesize: this.data.filter.pagesize}
+      loadingHidden: false,
+      filter: {page: 1, pagesize: this.data.filter.pagesize},
+      order: {
+        orderlist : [],
+        ordertotal : 0
+      }
     })
     this.getUserOrderList()
+  },
+  onShareAppMessage: function(){
+    return {
+      title: '我的订单',
+      desc: '我的订单描述',
+      path: '/page/component/index?id=123'
+    }
+  },
+  continueBuy: function(){
+    /*wx.showActionSheet({
+      itemList: ['2017-01-20', '2017-01-21', '2017-01-22'],
+      success: function(res) {
+        console.log(res.tapIndex)
+      },
+      fail: function(res) {
+        console.log(res.errMsg)
+      }
+    }) 
+    return */
+
+    wx.showModal({
+      title: '提示',
+      content: '确认将订单商品加入到购物车？',
+      confirmColor: '#ffee3c',
+      success: function(res) {
+        console.info(res);
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }else{
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
 })

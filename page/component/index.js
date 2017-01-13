@@ -38,6 +38,24 @@ Page({
 			console.log(error)
 		  }
 		})
-		
-	}
+	},
+	addCart: function(e){
+		console.log(e)
+		var cart = wx.getStorageSync('cart');
+		var id = e.currentTarget.dataset.pid
+		if(cart){
+			cart.push(id)
+		}else{
+			cart = []
+		}
+		wx.setStorageSync('cart',cart);
+		console.info(wx.getStorageInfoSync())
+	},
+	onShareAppMessage: function(){
+	    return {
+	      title: '我的两鲜',
+	      desc: '我的两鲜描述',
+	      path: '/page/component/index?id=123'
+	    }
+  	}
 })

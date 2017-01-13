@@ -67,7 +67,7 @@
 						
 						<view wx:elif="{{item.isOutStock == 1}}" class="add_cart" style="background:#dedede;color:#4b943d;">已售罄 补货中</view>
 						
-						<view wx:else class="add_cart" data-pID="{{item.productID}}" data-img="{{item.simpleProductInfo.productHomeImage}}" data-stand="{{item.simpleProductInfo.productStandard}}" data-price="{{item.simpleProductInfo.salePrice}}" data-name="{{item.productName}}">加入购物车</view>
+						<view bindtap="addCart" wx:else class="add_cart" data-pID="{{item.productID}}" data-img="{{item.simpleProductInfo.productHomeImage}}" data-stand="{{item.simpleProductInfo.productStandard}}" data-price="{{item.simpleProductInfo.salePrice}}" data-name="{{item.productName}}">加入购物车</view>
 						
 					</view>
 				</li>

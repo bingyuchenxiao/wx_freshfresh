@@ -1,6 +1,6 @@
 <!--page/component/order/index.wxml-->
 <view class="body">
-    <loading hidden="{{loadingHidden}}" bindchange="loadingChange">
+    <loading hidden="{{loadingHidden}}">
       加载中...
     </loading>
     <toast hidden="{{toastHidden.hidden}}" duration="1000" bindchange="toastChange">
@@ -13,14 +13,18 @@
             <view class="order_item bc_fa">                
                 <view class="title">
                     <text>订单编号 {{item.orderno}}</text>
-                    <text style="float: right;">{{item.orderstatus}}</text>
+
+                    <text wx:if="{{item.orderstatus == 'pending'}}" style="float: right;"> 待支付 </text>
+                    <text wx:if="{{item.orderstatus == 'processing'}}" style="float: right;"> 待支付 </text>
+                    <text wx:if="{{item.orderstatus == 'complete'}}" style="float: right;"> 已完成 </text>
+                    <text wx:if="{{item.orderstatus == 'canceled'}}" style="float: right;"> 已取消 </text>
+
                 </view>
                 <view class="product">
                     <scroll-view class="scroll-view_H scroll-view_{{item.orderno}}" scroll-x="true" style="width: 100%;height: 80px;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-left="{{scrollLeft}}">
                     
                     <view class="scroll-view-item_{{item.orderno}}" wx:for="{{item.orderproductimages}}" wx:for-index="idx" wx:for-item="itemName" style="">
-                      <!--{{idx}}: {{itemName}}-->
-                      <image src="{{itemName}}" data-src="{{itemName}}" mode="aspectFi" style="width: 70px; height: 70px;"></image>
+                      <image src="{{itemName}}" mode="aspectFi" style="width: 70px; height: 70px;"></image>
                     </view>
 
                     <!--<block wx:for-items="{{item.orderproductimages}}">
@@ -32,6 +36,11 @@
                     </scroll-view>
                 </view>
                 
+                <view class="bot">
+                    <text bindtap="continueBuy" wx:if="{{item.orderstatus == 'canceled' || item.orderstatus == 'complete'}}" style="float: right;"> 再次下单 </text>
+                    <text wx:if="{{item.orderstatus == 'complete'}}" style="float: right;"> 物流查询 </text>
+                    
+                </view>
 
             </view>
         </block>

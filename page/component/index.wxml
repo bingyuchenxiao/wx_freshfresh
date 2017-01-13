@@ -43,7 +43,9 @@
 
 
 	<!-- vipGoodsInfo -->
-	<view class="recommend">
+	<view class="recommend" style="position: relative;">
+
+
 		<view><text class="commend">{{homepage.vipGoodsInfo.vip.name}}</text></view>
 		<view class="commend_list">
 		
@@ -76,6 +78,10 @@
 
 			
 		</view>
+	</view>
+
+	<view animation="{{animationData}}" style="position:fixed;bottom:5rem;height:30rpx;width:30rpx;opacity: 0;">
+		<image class="addcart" src="{{animationImage}}" data-src="{{animationImage}}" style="width:2rem;height:2rem;"/>
 	</view>
 
 </view>

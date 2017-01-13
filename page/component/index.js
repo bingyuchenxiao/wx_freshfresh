@@ -3,7 +3,10 @@
 var app = getApp()
 Page({
 	data: {
-		homepage:{}
+		homepage:{},
+		display: "none",
+		animationImage: "",
+		animationData: {}
 	},
 	getHomeInfo: function () {
 		var uId = parseInt(wx.getStorageSync("customerId"))
@@ -50,6 +53,24 @@ Page({
 		}
 		wx.setStorageSync('cart',cart);
 		console.info(wx.getStorageInfoSync())
+		this.setData({
+	      animationImage: e.currentTarget.dataset.img,
+	      display: "block"
+	    })
+	    //return
+
+		var animation = wx.createAnimation({
+	        duration: 5000,
+	        timingFunction: 'ease',
+	    })
+
+	    this.animation = animation
+	    animation.scale(0.4).opacity(1).rotate(45)
+	    animation.translate(380, -1400).step({ duration: 1500 })
+	    console.info(e.currentTarget.dataset.img)
+	    this.setData({
+	      animationData: animation.export()
+	    })
 	},
 	onShareAppMessage: function(){
 	    return {
